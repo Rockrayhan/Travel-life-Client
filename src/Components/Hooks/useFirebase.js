@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification  } from "firebase/auth";
 import { useEffect, useState } from "react";
 import authInit from "../Firebase/firebase.init";
 authInit();
@@ -7,7 +7,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true)
-    console.log(user);
+    
 
 
     const googleSignIn = () => {
@@ -23,9 +23,42 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false))
     }
 
+
     
+
+    const registerUser = (email ,password , name , history) => {
+        setIsLoading(true);
+          createUserWithEmailAndPassword(auth , email , password)
+          .then((userCredential) => { 
+            const newUser = {email , displayName: name};
+            
+
+            setUser(newUser) ;
+            // save user to db 
+            // saveUser(email, name) ;
+            updateProfile(auth.currentUser, {
+              displayName: name
+            }).then(() => {
+            }).catch((error) => {
+            });
+            history.replace('/') ;
+            
+              // Signed in 
+              const user = userCredential.user;
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // ..
+            })
+            .finally(() => setIsLoading(false));
+      }
+
+
+    // user observer 
     useEffect(() => {
-        const unsubscribed = onAuthStateChanged(auth, user => {
+        const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
             }
@@ -37,6 +70,7 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [])
 
+
     const logOut = () => {
         setIsLoading(true)
         signOut(auth).then(() => { })
@@ -47,7 +81,8 @@ const useFirebase = () => {
         user,
         googleSignIn,
         isLoading,
-        logOut
+        logOut,
+        registerUser,
 
     }
 };

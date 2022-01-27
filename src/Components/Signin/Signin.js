@@ -3,10 +3,13 @@ import useAuth from '../Hooks/useAuth';
 import { Button, Container, Grid, LinearProgress, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 const Signin = () => {
-    const { googleSignIn, isLoading } = useAuth();
+    const { googleSignIn,registerUser, isLoading } = useAuth();
     const [loginData, setLoginData] = useState({});
+
+
+    const history = useHistory() ;
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -24,9 +27,9 @@ const Signin = () => {
             alert('Your Password Did Not Match');
             return
         }
-        // registerUser(loginData.email, loginData.password, loginData.name, history);
+        registerUser(loginData.email, loginData.password, loginData.name, history);
         e.preventDefault();
-        alert('Registration SuccessFull..!!');
+        alert('Please Cheack your email to verify.');
     }
 
 
