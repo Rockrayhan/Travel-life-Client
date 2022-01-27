@@ -9,7 +9,7 @@ const Service = (props) => {
             <h5> {name} </h5>
             <p> {description} </p>
             <Link to={`/booknow/${_id}`}> 
-            <button className="btn btn-success"> Book Now </button>
+            <button className="btn btn-success"> Details </button>
             </Link>
 
         </div>

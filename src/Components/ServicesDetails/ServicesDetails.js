@@ -32,23 +32,23 @@ const ServicesDetails = () => {
     return (
         <div className="container">
 
-            <h1 className="mb-5 text-success"> Book Now </h1>
+            <h1 className="mb-5 text-success"> Details </h1>
             <h2>{ExactItem[0]?.name}</h2>
             <img height="200px" width="350px" src={ExactItem[0]?.img} alt="" />
 
 
             <h6>{ExactItem[0]?.Description}</h6>
-            <h5 className="mt-5"> Hello <b>{user.displayName}</b> please book now </h5>
+            {/* <h5 className="mt-5"> Hello <b>{user.displayName}</b> please book now </h5> */}
 
 
-            <div className="add-service">
+           {/*  <div className="add-service">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
                 <input {...register("email")} placeholder="Email" />
                 <input {...register("address")} placeholder="Address" />
                 <input  type="submit" />
             </form>
-            </div>
+            </div> */}
             <Footer></Footer>
         </div>
     );

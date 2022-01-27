@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container footer text-center ">
             <h3 className="mt-5"> Always feel free to   <button className="btn btn-success ms-5"> Call us </button> </h3>
 
-            <p className="mt-5"> 2021 - Copyright by <b> Travel-Life</b>  </p>
+            <p className="mt-5"> 2022 - Copyright by <b> Travel-Life</b>  </p>
            
         </div>
         </div>

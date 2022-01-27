@@ -32,10 +32,10 @@ const useFirebase = () => {
          
             .then((userCredential) => {
                 const newUser = { email, displayName: name };
-                // send authentication link in email =========================
-         updateProfile(auth.currentUser, {
-            displayName: "User"
-        })
+            // send authentication link in email =========================
+        //  updateProfile(auth.currentUser, {
+        //     displayName: "User"
+        // })
         sendEmailVerification(auth.currentUser)
             .then(() => {
                 // Email verification sent!
