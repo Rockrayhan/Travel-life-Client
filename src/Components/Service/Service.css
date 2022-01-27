@@ -1,0 +1,16 @@
+.service-img{
+    height: 200px;
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.service-card {
+    cursor: pointer;
+    margin-bottom: 20px;
+    
+}
+
+.services-details{
+    width: 300px;
+}

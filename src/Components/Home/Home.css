@@ -1,0 +1,15 @@
+
+.banner-header{
+    
+    font-size: 50px;
+    margin-top: 50px ;
+}
+.banner-header-main{
+    margin-left: 50px ;
+    font-family: cursive;
+    font-weight: 700;
+}
+
+.banner-img {
+    border-radius: 20px;
+}
