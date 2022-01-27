@@ -25,8 +25,7 @@ const Header = () => {
                 <Link to="/signin">
                 <button onClick={logOut} className="btn btn-warning">Log out</button>
               </Link>
-              <Link to="addservice"> Add Service </Link>
-              <Link className="ms-3" to="orders"> My Orders </Link>
+              <Link style={{textDecoration:"none"}} to="addservice"> Add Blogs </Link>
               </div>
 
               :

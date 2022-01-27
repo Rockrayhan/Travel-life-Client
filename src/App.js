@@ -3,6 +3,7 @@ import './App.css';
 import Addservice from './Components/Addservice/Addservice';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
+import ManageBlogs from './Components/ManageBlogs/ManageBlogs';
 import NotFound from './Components/NotFound/NotFound';
 import Orders from './Components/Orders/Orders';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/orders">
             <Orders></Orders>
+            </Route>
+          <Route path="/manageblogs">
+            <ManageBlogs></ManageBlogs>
             </Route>
         <Route path="*">
           <NotFound></NotFound>
