@@ -12,7 +12,7 @@ const About = () => {
                         <img className="about-img shadow-lg" src={about1} alt="" />
                         <h3 className="mt-3">The Best Service
                             </h3>
-
+ 
                     </div>
                     <div className="col-lg-4">
                         <img className="about-img shadow-lg " src={about2} alt="" />
@@ -26,7 +26,8 @@ const About = () => {
  
                             </h3>
                     </div>
-                </div>
+                
+            </div>
 
         </div>
     );
