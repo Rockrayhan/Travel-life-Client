@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification  } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { useEffect, useState } from "react";
 import authInit from "../Firebase/firebase.init";
 authInit();
@@ -7,7 +7,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true)
-    
+
 
 
     const googleSignIn = () => {
@@ -24,36 +24,45 @@ const useFirebase = () => {
     }
 
 
-    
 
-    const registerUser = (email ,password , name , history) => {
+
+    const registerUser = (email, password, name, history) => {
         setIsLoading(true);
-          createUserWithEmailAndPassword(auth , email , password)
-          .then((userCredential) => { 
-            const newUser = {email , displayName: name};
-            
-
-            setUser(newUser) ;
-            // save user to db 
-            // saveUser(email, name) ;
-            updateProfile(auth.currentUser, {
-              displayName: name
-            }).then(() => {
-            }).catch((error) => {
+        createUserWithEmailAndPassword(auth, email, password)
+         
+            .then((userCredential) => {
+                const newUser = { email, displayName: name };
+                // send authentication link in email =========================
+         updateProfile(auth.currentUser, {
+            displayName: "User"
+        })
+        sendEmailVerification(auth.currentUser)
+            .then(() => {
+                // Email verification sent!
+                // ...
             });
-            history.replace('/') ;
-            
-              // Signed in 
-              const user = userCredential.user;
-              // ...
+            //   =========================
+                setUser(newUser);
+                // save user to db 
+                // saveUser(email, name) ;
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                }).catch((error) => {
+                });
+                history.replace('/');
+
+                // Signed in 
+                const user = userCredential.user;
+                // ...
             })
             .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              // ..
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
             })
             .finally(() => setIsLoading(false));
-      }
+    }
 
 
     // user observer 
@@ -74,7 +83,7 @@ const useFirebase = () => {
     const logOut = () => {
         setIsLoading(true)
         signOut(auth).then(() => { })
-        .finally(() => setIsLoading(false))
+            .finally(() => setIsLoading(false))
     }
 
     return {
