@@ -1,24 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Footer from '../Footer/Footer';
-import useAuth from '../Hooks/useAuth';
-import { useForm } from "react-hook-form";
-import axios from 'axios';
 
 const ServicesDetails = () => {
-    /* const { register, handleSubmit ,reset } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-        axios.post('https://stark-inlet-11543.herokuapp.com/orders', data)
-        .then(res=>{
-            if(res.data.insertedId) {
-                alert('added successfully')
-                reset() ;
-            }
-            
-        });
-    } */
-    const { user } = useAuth();
+    
     const { _id } = useParams();
     const [data, setData] = useState({});
     useEffect(() => {
@@ -43,17 +28,7 @@ const ServicesDetails = () => {
 
 
 
-            {/* <h5 className="mt-5"> Hello <b>{user.displayName}</b> please book now </h5> */}
-
-
-           {/*  <div className="add-service">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
-                <input {...register("email")} placeholder="Email" />
-                <input {...register("address")} placeholder="Address" />
-                <input  type="submit" />
-            </form>
-            </div> */}
+          
             <Footer></Footer>
         </div>
     );

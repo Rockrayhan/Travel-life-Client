@@ -4,8 +4,6 @@ import Addservice from './Components/Addservice/Addservice';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import ManageBlogs from './Components/ManageBlogs/ManageBlogs';
-import NotFound from './Components/NotFound/NotFound';
-import Orders from './Components/Orders/Orders';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import ServicesDetails from './Components/ServicesDetails/ServicesDetails';
 import Signin from './Components/Signin/Signin';
@@ -35,15 +33,10 @@ function App() {
           <Route path="/addservice">
           <Addservice></Addservice>
           </Route>
-          <Route path="/orders">
-            <Orders></Orders>
-            </Route>
+         
           <Route path="/manageblogs">
             <ManageBlogs></ManageBlogs>
             </Route>
-        <Route path="*">
-          <NotFound></NotFound>
-        </Route>
       </Switch>
       </BrowserRouter>
       </AuthProvider>
