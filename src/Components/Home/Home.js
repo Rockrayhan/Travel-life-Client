@@ -8,9 +8,12 @@ import kuakata from '../../images/kuakata.jpg'
 import bandarban from '../../images/bandarban.jpg'
 import nikli from '../../images/nikli.jpg'
 import { Carousel } from 'react-bootstrap';
+import Blogs from '../Blogs/Blogs';
 const Home = () => {
     return (
         <div>
+
+ {/*================= banner ============== */}
 
             <div id="home" className="container mb-5">
                 <div className="row">
@@ -62,8 +65,12 @@ const Home = () => {
                         </Carousel>
                     </div>
                 </div>
+
+                {/*================= banner END ============== */}
+
                 <Services> </Services>
                 <Contact> </Contact>
+                <Blogs></Blogs>
                 <About> </About>
                 <Footer></Footer>
             </div>
