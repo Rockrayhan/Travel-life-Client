@@ -68,9 +68,11 @@ const Home = () => {
 
                 {/*================= banner END ============== */}
 
-                <Services> </Services>
-                <Contact> </Contact>
+                {/* <Services> </Services> */}
+               
                 <Blogs></Blogs>
+                
+                <Contact> </Contact>
                 <About> </About>
                 <Footer></Footer>
             </div>

@@ -20,9 +20,9 @@ const Addservice = () => {
         <div className="add-service">
             <h2 className="mb-4 text-success">Add Your experience </h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("title", { required: true, maxLength: 20 })} placeholder="Title" />
+                <input {...register("title", { required: true, maxLength: 20 })} placeholder="Tour Title" />
                 <input {...register("name")} placeholder="Your name" />
-                <input type="number" {...register("number")}  placeholder="Money" />
+                <input type="number" {...register("number")}  placeholder="Money Spent" />
                 <input {...register("location")} placeholder="Your Location" />
                 <textarea {...register("Description")} placeholder="Description" />
                 <input {...register("img")} placeholder="img-url" />

@@ -15,7 +15,7 @@ const Header = () => {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="#services">Services</Nav.Link>
+            <Nav.Link href="#blogs">Blogs</Nav.Link>
             <Nav.Link href="#contact">Contact</Nav.Link>
             <Nav.Link href="#about">About</Nav.Link>
 
