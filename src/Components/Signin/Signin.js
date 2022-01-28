@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 const Signin = () => {
-    const { googleSignIn,registerUser, isLoading } = useAuth();
+    const {registerUser, isLoading } = useAuth();
     const [loginData, setLoginData] = useState({});
 
 
@@ -96,8 +96,8 @@ const Signin = () => {
 
 
 
-            <NavLink style={{textDecoration:"none"}} to="/signin"> <Button variant="text"> Already registered? Please Login</Button> </NavLink>
-            <button onClick={googleSignIn} className="btn btn-success mt-5">Sign in with GOOGLE</button>
+            <NavLink style={{textDecoration:"none"}} to="/login"> <Button variant="text"> Already registered? Please Login</Button> </NavLink>
+            
         </div>
     );
 };

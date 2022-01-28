@@ -9,7 +9,7 @@ const Login = () => {
 
 
     const [loginData, setLoginData ] = useState({})
-    const {user , loginUser , isLoading } = useAuth();
+    const {user , loginUser , isLoading, googleSignIn } = useAuth();
 
     const location = useLocation() ;
     const history = useHistory() ;
@@ -62,6 +62,8 @@ const Login = () => {
         <br />
 
         <Button sx={{width: '50%', m:2}} variant="contained" type="submit"> Login </Button>
+        <br />
+        <button onClick={googleSignIn} className="btn btn-success mt-5">Sign in with GOOGLE</button>
         <br />
         <NavLink style={{textDecoration:"none"}} to="/signin"> <Button variant="text"> New User ? please Register</Button> </NavLink>
 
