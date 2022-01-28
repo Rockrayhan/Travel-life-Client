@@ -8,7 +8,7 @@ const Services = () => {
     const { isLoading} = useAuth();
 
     useEffect( ()=>{
-        fetch('https://stark-inlet-11543.herokuapp.com/services')
+        fetch('https://young-castle-06851.herokuapp.com/services')
         .then(res=>res.json())
         .then(data=>setServices(data))
     } ,[])

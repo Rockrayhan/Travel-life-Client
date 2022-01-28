@@ -7,7 +7,7 @@ const ManageBlogs = () => {
     const { _id } = useParams();
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://young-castle-06851.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -16,7 +16,7 @@ const ManageBlogs = () => {
      const handleDelete = id => {
         const proceed = window.confirm('Are you sure, You want to Delete..!!');
         if (proceed) {
-            const url = `http://localhost:5000/services/${id}`;
+            const url = `https://young-castle-06851.herokuapp.com/services/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

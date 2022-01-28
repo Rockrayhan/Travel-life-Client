@@ -15,7 +15,7 @@ const Blogs = () => {
     useEffect(()=> {
         const fetchPosts = async () => {
             setLoading(true);
-            const res = await axios.get('http://localhost:5000/services') ;
+            const res = await axios.get('https://young-castle-06851.herokuapp.com/services') ;
             setPosts(res.data);
             setLoading(false);
         }

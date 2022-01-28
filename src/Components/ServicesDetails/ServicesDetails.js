@@ -7,7 +7,7 @@ const ServicesDetails = () => {
     const { _id } = useParams();
     const [data, setData] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${_id}`)
+        fetch(`https://young-castle-06851.herokuapp.com/services/${_id}`)
             .then(res => res.json())
             .then(data => setData(data))
     }, [])
