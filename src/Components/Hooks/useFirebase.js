@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
 import authInit from "../Firebase/firebase.init";
 authInit();
@@ -7,17 +7,20 @@ const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true)
+    const [admin , setAdmin] = useState(false) ;    
+    
 
-
-
-    const googleSignIn = () => {
+    const googleSignIn = (location , history) => {
         setIsLoading(true)
         const googleProvider = new GoogleAuthProvider();
 
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT');
                 setUser(user)
+                // const destination = location?.state?.from || '/';
+                // history.replace(destination);    
 
             })
             .finally(() => setIsLoading(false))
@@ -29,22 +32,22 @@ const useFirebase = () => {
     const registerUser = (email, password, name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
-         
+
             .then((userCredential) => {
                 const newUser = { email, displayName: name };
-            // send authentication link in email =========================
-        //  updateProfile(auth.currentUser, {
-        //     displayName: "User"
-        // })
-        sendEmailVerification(auth.currentUser)
-            .then(() => {
-                // Email verification sent!
-                // ...
-            });
-            //   =========================
+                // send authentication link in email =========================
+                //  updateProfile(auth.currentUser, {
+                //     displayName: "User"
+                // })
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        // Email verification sent!
+                        // ...
+                    });
+                //   =========================
                 setUser(newUser);
                 // save user to db 
-                // saveUser(email, name) ;
+                saveUser(email, name);
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -65,6 +68,26 @@ const useFirebase = () => {
     }
 
 
+
+    const loginUser = (email , password , location , history) => {
+        setIsLoading(true);
+        signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const destination = location?.state?.from || '/' ;
+      history.replace(destination) ;
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    })
+    .finally(() => setIsLoading(false));
+      }
+
+
+
     // user observer 
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -80,18 +103,46 @@ const useFirebase = () => {
     }, [])
 
 
+
+ // cheack admin
+ useEffect(()=> {
+    fetch (`http://localhost:5000/users/${user.email}`)
+    .then(res=>res.json())
+    .then(data => setAdmin(data.admin))
+ }, [user.email] )
+
+
+
     const logOut = () => {
         setIsLoading(true)
         signOut(auth).then(() => { })
             .finally(() => setIsLoading(false))
     }
 
+
+    const saveUser = (email, displayName) => {
+        const user = { email, displayName };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
+
+
+   
+
     return {
         user,
+        admin,
         googleSignIn,
         isLoading,
         logOut,
         registerUser,
+        loginUser,
 
     }
 };

@@ -6,7 +6,7 @@ import useAuth from '../Hooks/useAuth';
 
 
 const Header = () => {
-  const { logOut, user } = useAuth();
+  const { logOut, user} = useAuth();
   return (
     <>
       <Navbar className="mb-5" bg="dark" variant="dark" sticky="top" >
@@ -22,10 +22,12 @@ const Header = () => {
             {
             user.email ?
               <div>
+                <Link style={{textDecoration:"none", color:'yellow'}} to="/dashboard"> DashBoard </Link>
+
                 <Link to="/signin">
                 <button onClick={logOut} className="btn btn-warning">Log out</button>
               </Link>
-              <Link style={{textDecoration:"none"}} to="addservice"> Add Blogs </Link>
+              
               </div>
 
               :

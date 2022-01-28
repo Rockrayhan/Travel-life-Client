@@ -1,11 +1,14 @@
 import { BrowserRouter,Switch, Route } from 'react-router-dom';
 import './App.css';
 import Addservice from './Components/Addservice/Addservice';
+import DashBoard from './Components/DashBoard/DashBoard';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
+import MakeAdmin from './Components/MakeAdmin/MakeAdmin';
 import ManageBlogs from './Components/ManageBlogs/ManageBlogs';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import ServicesDetails from './Components/ServicesDetails/ServicesDetails';
+import Login from './Components/Signin/Login';
 import Signin from './Components/Signin/Signin';
 import AuthProvider from './Contex/AuthProvider';
 
@@ -27,16 +30,31 @@ function App() {
         <Route path="/signin">
           <Signin></Signin>
         </Route>
+
+        <Route path="/login">
+          <Login></Login>
+        </Route>
+
         <PrivateRoute path="/booknow/:_id"> 
           <ServicesDetails></ServicesDetails>
           </PrivateRoute>
-          <Route path="/addservice">
+
+          <PrivateRoute path="/addservice">
           <Addservice></Addservice>
-          </Route>
+          </PrivateRoute>
          
-          <Route path="/manageblogs">
+          <PrivateRoute path="/manageblogs">
             <ManageBlogs></ManageBlogs>
-            </Route>
+            </PrivateRoute>
+
+          <PrivateRoute path="/makeadmin">
+            <MakeAdmin></MakeAdmin>
+            </PrivateRoute>
+
+          <PrivateRoute path="/dashboard">
+            <DashBoard></DashBoard>
+            </PrivateRoute>
+
       </Switch>
       </BrowserRouter>
       </AuthProvider>

@@ -7,18 +7,16 @@ const ManageBlogs = () => {
     const { _id } = useParams();
 
     useEffect(() => {
-        fetch('https://stark-inlet-11543.herokuapp.com/services')
+        fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
 
 
-
-
-    const handleDelete = id => {
+     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, You want to Delete..!!');
         if (proceed) {
-            const url = `https://stark-inlet-11543.herokuapp.com/services/${_id}`;
+            const url = `http://localhost:5000/services/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -32,7 +30,7 @@ const ManageBlogs = () => {
                     }
                 });
         }
-    }
+    } 
 
 
     return (
@@ -47,11 +45,11 @@ const ManageBlogs = () => {
                     >
                         <div className='col my-5'>
 
-                            <h1>{service.name}</h1>
+                            <h1>{service.title}</h1>
                             <img className='img-fluid service-img' src={service.img} alt="" />
 
 
-                            <button onClick={() => handleDelete(service._id)} className="btn btn-danger"> Delete</button>
+                            <button style={{marginLeft:'20px'}} onClick={() => handleDelete(service._id)} className="btn btn-danger"> Delete</button>
 
 
                         </div>

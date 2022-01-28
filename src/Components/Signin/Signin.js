@@ -3,7 +3,7 @@ import useAuth from '../Hooks/useAuth';
 import { Button, Container, Grid, LinearProgress, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 const Signin = () => {
     const { googleSignIn,registerUser, isLoading } = useAuth();
     const [loginData, setLoginData] = useState({});
@@ -96,7 +96,7 @@ const Signin = () => {
 
 
 
-            <h6> Already Registered ? Please Sign in   </h6>
+            <NavLink style={{textDecoration:"none"}} to="/signin"> <Button variant="text"> Already registered? Please Login</Button> </NavLink>
             <button onClick={googleSignIn} className="btn btn-success mt-5">Sign in with GOOGLE</button>
         </div>
     );
