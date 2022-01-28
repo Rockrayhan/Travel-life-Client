@@ -1,6 +1,8 @@
+
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import Pagination from './Pagination';
 import Posts from './Posts/Posts';
 
 const Blogs = () => {
@@ -21,12 +23,24 @@ const Blogs = () => {
         fetchPosts();
     }, []);
 
-    
+
+    // Get Current posts
+    const indexOfLastPost = currentPage * postsPerPage ;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage ;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost) ;
+
+
+    // change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        <div className='mt-5 mb-5'>
+        <div id="blogs" className='mt-5 mb-5'>
             <h1 className='text-primary'>Here are all the blogs</h1>
-            <Posts posts={posts} loading={loading} />
+            <Posts posts={currentPosts} loading={loading} />
+            <Pagination
+             postsPerPage={postsPerPage} 
+             totalPosts={posts.length}
+             paginate={paginate} />
         </div>
     );
 };
